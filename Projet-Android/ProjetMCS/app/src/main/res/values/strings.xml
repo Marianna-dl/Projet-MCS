@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ProjetMCS</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_a_propos">A propos</string>
+    <string name="action_Quitter">Quitter</string>
 </resources>

@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
-
-/**
- * Created by utilisateur on 16/03/2016.
- */
 public class AccueilActivity extends Activity {
 
     Button btnActivityRecord;
@@ -24,12 +22,13 @@ public class AccueilActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AccueilActivity.this, RecordActivity.class);
-                startActivity(intent);
+                RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+                int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
+                if (checkedRadioButtonId == R.id.radioAvance) {
+                    setContentView(R.layout.avance_layout);
+                }
             }
         });
-
     }
-
 }
 
