@@ -3,24 +3,26 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/margePrincipale" >
+    android:layout_margin="@dimen/margePrincipale"
+    android:weightSum="1">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Avance"
-        android:id="@+id/textViewAvance"
+        android:text="Gauche"
+        android:id="@+id/textViewGauche"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"/>
 
     <ImageView
-        android:id="@+id/imageAvance"
-        android:layout_width="150dp"
-        android:layout_height="164dp"
+        android:id="@+id/imageGauche"
+        android:layout_width="wrap_content"
+        android:layout_height="54dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/avance"
-        android:layout_marginBottom="20dp" />
+        android:src="@drawable/gauche"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="0.14" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,17 +33,17 @@
         android:layout_marginBottom="20dp"/>
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/radioGroupAvance"
+        android:id="@+id/radioGroupGauche"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:checkedButton="@+id/radioAvanceNonBruite">
+        android:checkedButton="@+id/radioGaucheNonBruite">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enregistrement bruité"
-            android:id="@+id/radioAvanceNonBruite"
+            android:id="@+id/radioGaucheNonBruite"
             android:checked="false"
             android:layout_marginRight="50dp" />
 
@@ -49,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enregistrement non bruité"
-            android:id="@+id/radioAvanceBruite"
+            android:id="@+id/radioGaucheBruite"
             android:checked="false"
             android:layout_marginRight="50dp" />
 

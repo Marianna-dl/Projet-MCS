@@ -26,6 +26,10 @@ public class AccueilActivity extends Activity {
                 int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
                 if (checkedRadioButtonId == R.id.radioAvance) {
                     setContentView(R.layout.avance_layout);
+                } else if (checkedRadioButtonId == R.id.radioGauche) {
+                    setContentView(R.layout.gauche_layout);
+                } else if (checkedRadioButtonId == R.id.radioTourneGauche) {
+                    setContentView(R.layout.tourne_gauche_layout);
                 }
             }
         });
