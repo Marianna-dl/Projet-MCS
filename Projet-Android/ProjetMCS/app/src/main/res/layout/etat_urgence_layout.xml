@@ -63,4 +63,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ecouter l'instruction"
+        android:id="@+id/btnEcoute"
+        android:layout_gravity="center_horizontal" />
+
 </LinearLayout>
