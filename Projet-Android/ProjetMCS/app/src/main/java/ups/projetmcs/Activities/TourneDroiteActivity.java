@@ -24,14 +24,10 @@ public class TourneDroiteActivity extends Activity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        //A modifier avec la vue qui convient
-        setContentView(R.layout.avance_layout);
-        //---
+        setContentView(R.layout.tourne_droite_layout);
         mRecordButton = (RecordButton) findViewById(R.id.btnRecord);
         mPlayButton = (PlayButton) findViewById(R.id.btnPlay);
-        //A modifier avec la vue qui convient
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroupAvance);
-        //---
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroupTourneDroite);
 
         mRecordButton.setCorpusFolder(AccueilActivity.CORPUS_BRUITE);
         mPlayButton.setCorpusFolder(AccueilActivity.CORPUS_BRUITE);

@@ -54,6 +54,13 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Recule"
+                    android:id="@+id/radioRecule"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Gauche"
                     android:id="@+id/radioGauche"
                     android:checked="false" />
@@ -68,8 +75,15 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Recule"
-                    android:id="@+id/radioRecule"
+                    android:text="Droite"
+                    android:id="@+id/radioDroite"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tourne Droite"
+                    android:id="@+id/radioTourneDroite"
                     android:checked="false" />
 
                 <RadioButton
