@@ -1,8 +1,7 @@
 package ups.projetmcs.GComponents;
 
 import android.content.Context;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
+import android.graphics.Color;
 import android.media.MediaRecorder;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -13,7 +12,7 @@ import android.widget.RadioGroup;
 
 import java.io.IOException;
 
-import ups.projetmcs.Activities.RecordActivity;
+import ups.projetmcs.Activities.AccueilActivity;
 import ups.projetmcs.R;
 
 /**
@@ -23,40 +22,36 @@ public class RecordButton extends Button {
     boolean mStartRecording = true;
     private MediaRecorder mRecorder = null;
     private static final String LOG_TAG = "RecordButton";
-    private static String mFileName = RecordActivity.CORPUS_NON_BRUITE;
-    RadioGroup groupCommands =  (RadioGroup) findViewById(R.id.groupCommands);
+    private static String corpusFolder;
+    private String namefile;
     final Context context;
 
     public RecordButton(Context context) {
         super(context);
         this.context = context;
-        setText("Start recording");
         setOnClickListener(clicker);
-        groupCommands = (RadioGroup) findViewById(R.id.groupCommands);
     }
 
     public RecordButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        setText("Start recording");
         setOnClickListener(clicker);
-        groupCommands = (RadioGroup) findViewById(R.id.groupCommands);
     }
 
     public RecordButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         this.context = context;
-        setText("Start recording");
         setOnClickListener(clicker);
-        groupCommands = (RadioGroup) findViewById(R.id.groupCommands);
     }
     OnClickListener clicker = new OnClickListener() {
         public void onClick(View v) {
             onRecord(mStartRecording);
             if (mStartRecording) {
-                setText("Stop recording");
+                setText("Arrêter l'enregistrement");
+                setBackgroundColor(Color.RED);
             } else {
-                setText("Start recording");
+                setText("Enregistrer l'instruction");
+                setBackgroundColor(0xFF63E877);
             }
             mStartRecording = !mStartRecording;
         }
@@ -71,15 +66,12 @@ public class RecordButton extends Button {
     }
 
     private void startRecording() {
-        Log.v("FILE", mFileName);
-        int idButtonChecked = groupCommands.getCheckedRadioButtonId();
-        RadioButton radioChecked = (RadioButton) findViewById(idButtonChecked);
-        String nameFile = radioChecked.getText().toString().trim();
+        Log.v(LOG_TAG, corpusFolder);
 
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        mRecorder.setOutputFile(mFileName+"/"+nameFile+".wav");
+        mRecorder.setOutputFile(corpusFolder+"/"+namefile);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
         try {
@@ -103,5 +95,13 @@ public class RecordButton extends Button {
 
     public void setmRecorder(MediaRecorder mRecorder) {
         this.mRecorder = mRecorder;
+    }
+
+    public void setCorpusFolder(String corpus){
+        this.corpusFolder = corpus;
+    }
+
+    public void setNameFile(String nameFile){
+        this.namefile = nameFile;
     }
 }

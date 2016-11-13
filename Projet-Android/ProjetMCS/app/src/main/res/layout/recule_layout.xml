@@ -39,33 +39,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enregistrement bruité"
-            android:id="@+id/radioReculeNonBruite"
-            android:checked="false"
+            android:id="@+id/radioBruite"
+            android:checked="true"
             android:layout_marginRight="50dp" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enregistrement non bruité"
-            android:id="@+id/radioReculeBruite"
+            android:id="@+id/radioNonBruite"
             android:checked="false"
             android:layout_marginRight="50dp" />
 
     </RadioGroup>
 
-    <Button
+    <ups.projetmcs.GComponents.RecordButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enregistrer l'instruction"
         android:id="@+id/btnRecord"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:background="#63e877"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
 
-    <Button
+    <ups.projetmcs.GComponents.PlayButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ecouter l'instruction"
-        android:id="@+id/btnEcoute"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/btnPlay"
+        android:layout_gravity="center_horizontal"
+        android:background="#e9a11c"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>

@@ -5,8 +5,8 @@ package ups.projetmcs.GComponents;
  */
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.MediaPlayer;
-import android.media.MediaRecorder;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +16,7 @@ import android.widget.RadioGroup;
 
 import java.io.IOException;
 
-import ups.projetmcs.Activities.RecordActivity;
+import ups.projetmcs.Activities.AccueilActivity;
 import ups.projetmcs.R;
 
 
@@ -27,41 +27,38 @@ public class PlayButton extends Button {
     private static final String LOG_TAG = "PlayButton";
     boolean mStartPlaying = true;
     private MediaPlayer   mPlayer = null;
-    private static String mFileName = RecordActivity.CORPUS_NON_BRUITE;
     RadioGroup groupCommands = null;
     final Context context;
+    private static String corpusFolder;
+    private String namefile;
 
     public PlayButton(Context context) {
         super(context);
         this.context = context;
-        setText("Start playing");
         setOnClickListener(clicker);
-        groupCommands = (RadioGroup) findViewById(R.id.groupCommands);
     }
 
     public PlayButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        setText("Start playing");
         setOnClickListener(clicker);
-        groupCommands = (RadioGroup) findViewById(R.id.groupCommands);
     }
 
     public PlayButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         this.context = context;
-        setText("Start playing");
         setOnClickListener(clicker);
-        groupCommands = (RadioGroup) findViewById(R.id.groupCommands);
     }
 
     OnClickListener clicker = new OnClickListener() {
         public void onClick(View v) {
             onPlay(mStartPlaying);
             if (mStartPlaying) {
-                setText("Stop playing");
+                setText("Arrêter l'écoute");
+                setBackgroundColor(Color.RED);
             } else {
-                setText("Start playing");
+                setText("Ecouter l'instruction");
+                setBackgroundColor(0xFFE9A11C);
             }
             mStartPlaying = !mStartPlaying;
         }
@@ -76,12 +73,10 @@ public class PlayButton extends Button {
     }
 
     private void startPlaying() {
+        Log.v(LOG_TAG, corpusFolder);
         mPlayer = new MediaPlayer();
-        int idButtonChecked = groupCommands.getCheckedRadioButtonId();
-        RadioButton radioChecked = (RadioButton) findViewById(idButtonChecked);
-        String nameFile = radioChecked.getText().toString().trim();
         try {
-            mPlayer.setDataSource(mFileName+"/"+nameFile+".wav");
+            mPlayer.setDataSource(corpusFolder+"/"+namefile);
             mPlayer.prepare();
             mPlayer.start();
         } catch (IOException e) {
@@ -100,5 +95,13 @@ public class PlayButton extends Button {
 
     public void setmPlayer(MediaPlayer mPlayer) {
         this.mPlayer = mPlayer;
+    }
+
+    public void setCorpusFolder(String corpus){
+        this.corpusFolder = corpus;
+    }
+
+    public void setNameFile(String nameFile){
+        this.namefile = nameFile;
     }
 }

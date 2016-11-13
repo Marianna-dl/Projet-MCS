@@ -21,31 +21,27 @@
 
         </activity>
         <activity
-            android:name=".Activities.RecordActivity"
-            android:label="RecordActivity" >
-        </activity>
-        <activity
-            android:name=".AvanceActivity"
+            android:name=".Activities.AvanceActivity"
             android:label="AvanceActivity" >
         </activity>
         <activity
-            android:name=".GaucheActivity"
+            android:name=".Activities.GaucheActivity"
             android:label="GaucheActivity" >
         </activity>
         <activity
-            android:name=".TourneGaucheActivity"
+            android:name=".Activities.TourneGaucheActivity"
             android:label="TourneGaucheActivity" >
         </activity>
         <activity
-            android:name=".ReculeActivity"
+            android:name=".Activities.ReculeActivity"
             android:label="ReculeActivity" >
         </activity>
         <activity
-            android:name=".EtatUrgenceActivity"
+            android:name=".Activities.EtatUrgenceActivity"
             android:label="EtatUrgenceActivity" >
         </activity>
         <activity
-            android:name=".FlipActivity"
+            android:name=".Activities.FlipActivity"
             android:label="FlipActivity" >
         </activity>
     </application>
