@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="54dp"
         android:layout_gravity="center_horizontal"
-        android:src=""
+        android:src="@drawable/gauche"
         android:layout_marginBottom="20dp"
         android:layout_weight="0.14" />
 
