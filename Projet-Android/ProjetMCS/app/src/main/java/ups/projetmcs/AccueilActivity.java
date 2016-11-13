@@ -30,6 +30,12 @@ public class AccueilActivity extends Activity {
                     setContentView(R.layout.gauche_layout);
                 } else if (checkedRadioButtonId == R.id.radioTourneGauche) {
                     setContentView(R.layout.tourne_gauche_layout);
+                } else if (checkedRadioButtonId == R.id.radioRecule) {
+                    setContentView(R.layout.recule_layout);
+                } else if (checkedRadioButtonId == R.id.radioUrgence) {
+                    setContentView(R.layout.etat_urgence_layout);
+                } else if (checkedRadioButtonId == R.id.radioFlip) {
+                    setContentView(R.layout.flip_layout);
                 }
             }
         });

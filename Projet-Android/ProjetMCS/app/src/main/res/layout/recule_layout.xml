@@ -9,16 +9,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Avance"
-        android:id="@+id/textViewAvance"
+        android:text="Recule"
+        android:id="@+id/textViewRecule"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"/>
 
-    <pl.droidsonroids.gif.GifImageView
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+    <ImageView
+        android:id="@+id/imageRecule"
+        android:layout_width="150dp"
+        android:layout_height="164dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/avance2" />
+        android:src="@drawable/recule"
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,17 +31,17 @@
         android:layout_marginBottom="20dp"/>
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/radioGroupAvance"
+        android:id="@+id/radioGroupRecule"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:checkedButton="@+id/radioAvanceNonBruite">
+        android:checkedButton="@+id/radioReculeNonBruite">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enregistrement bruité"
-            android:id="@+id/radioAvanceNonBruite"
+            android:id="@+id/radioReculeNonBruite"
             android:checked="false"
             android:layout_marginRight="50dp" />
 
@@ -47,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enregistrement non bruité"
-            android:id="@+id/radioAvanceBruite"
+            android:id="@+id/radioReculeBruite"
             android:checked="false"
             android:layout_marginRight="50dp" />
 
