@@ -99,6 +99,14 @@
                     android:text="Fais un flip"
                     android:id="@+id/radioFlip"
                     android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Arrête toi"
+                    android:id="@+id/radioArreteToi"
+                    android:checked="false" />
+
             </RadioGroup>
 
             <Button
