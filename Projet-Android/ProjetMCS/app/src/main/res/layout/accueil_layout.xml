@@ -1,34 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/layoutAccueil"
-    android:measureWithLargestChild="true"
-    android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Accueil"
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal"
-        android:textSize="60dp" />
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:id="@+id/relativeLayout1"
+    android:layout_width="wrap_content">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enregistrer fichiers"
-        android:id="@+id/btnActivityRecord"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp" />
+    <ScrollView
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Parler robot ?"
-        android:id="@+id/btnActivityTalk"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp" />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/layoutAccueil"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:measureWithLargestChild="true"
+            android:layout_margin="@dimen/margePrincipale"
+            android:weightSum="1">
 
-</LinearLayout>
+            <ImageView
+                android:id="@+id/imageJumpingSumo"
+                android:layout_width="150dp"
+                android:layout_height="164dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/jumping_sumo"
+                android:layout_marginBottom="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Choisissez une instruction à enregistrer : "
+                android:id="@+id/textView2"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/radioGroup"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:checkedButton="@+id/radioAvance">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Avance"
+                    android:id="@+id/radioAvance"
+                    android:checked="false"
+                    android:layout_marginRight="50dp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gauche"
+                    android:id="@+id/radioGauche"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tourne Gauche"
+                    android:id="@+id/radioTourneGauche"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recule"
+                    android:id="@+id/radioRecule"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Etat d&apos;urgence"
+                    android:id="@+id/radioUrgence"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fais un flip"
+                    android:id="@+id/radioFlip"
+                    android:checked="false" />
+            </RadioGroup>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valider"
+                android:id="@+id/btnActivityRecord"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

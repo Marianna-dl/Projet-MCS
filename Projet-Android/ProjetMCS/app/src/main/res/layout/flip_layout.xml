@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/margePrincipale" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Fais un flip"
+        android:id="@+id/textViewFlip"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="75dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/flip"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Choix du type d'enregistrement :"
+        android:id="@+id/textViewChoix"
+        android:layout_marginBottom="20dp"/>
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/radioGroupFlip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:checkedButton="@+id/radioFlipNonBruite">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enregistrement bruité"
+            android:id="@+id/radioFlipNonBruite"
+            android:checked="false"
+            android:layout_marginRight="50dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enregistrement non bruité"
+            android:id="@+id/radioFlipBruite"
+            android:checked="false"
+            android:layout_marginRight="50dp" />
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enregistrer l'instruction"
+        android:id="@+id/btnRecord"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ecouter l'instruction"
+        android:id="@+id/btnEcoute"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>
