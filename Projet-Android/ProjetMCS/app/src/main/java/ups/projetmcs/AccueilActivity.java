@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class AccueilActivity extends Activity {
@@ -25,17 +24,23 @@ public class AccueilActivity extends Activity {
                 RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
                 int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
                 if (checkedRadioButtonId == R.id.radioAvance) {
-                    setContentView(R.layout.avance_layout);
+                    Intent intent = new Intent(AccueilActivity.this, AvanceActivity.class);
+                    startActivity(intent);
                 } else if (checkedRadioButtonId == R.id.radioGauche) {
-                    setContentView(R.layout.gauche_layout);
+                    Intent intent = new Intent(AccueilActivity.this, GaucheActivity.class);
+                    startActivity(intent);
                 } else if (checkedRadioButtonId == R.id.radioTourneGauche) {
-                    setContentView(R.layout.tourne_gauche_layout);
+                    Intent intent = new Intent(AccueilActivity.this, TourneGaucheActivity.class);
+                    startActivity(intent);
                 } else if (checkedRadioButtonId == R.id.radioRecule) {
-                    setContentView(R.layout.recule_layout);
+                    Intent intent = new Intent(AccueilActivity.this, ReculeActivity.class);
+                    startActivity(intent);
                 } else if (checkedRadioButtonId == R.id.radioUrgence) {
-                    setContentView(R.layout.etat_urgence_layout);
+                    Intent intent = new Intent(AccueilActivity.this, EtatUrgenceActivity.class);
+                    startActivity(intent);
                 } else if (checkedRadioButtonId == R.id.radioFlip) {
-                    setContentView(R.layout.flip_layout);
+                    Intent intent = new Intent(AccueilActivity.this, FlipActivity.class);
+                    startActivity(intent);
                 }
             }
         });

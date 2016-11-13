@@ -24,6 +24,30 @@
             android:name=".RecordActivity"
             android:label="RecordActivity" >
         </activity>
+        <activity
+            android:name=".AvanceActivity"
+            android:label="AvanceActivity" >
+        </activity>
+        <activity
+            android:name=".GaucheActivity"
+            android:label="GaucheActivity" >
+        </activity>
+        <activity
+            android:name=".TourneGaucheActivity"
+            android:label="TourneGaucheActivity" >
+        </activity>
+        <activity
+            android:name=".ReculeActivity"
+            android:label="ReculeActivity" >
+        </activity>
+        <activity
+            android:name=".EtatUrgenceActivity"
+            android:label="EtatUrgenceActivity" >
+        </activity>
+        <activity
+            android:name=".FlipActivity"
+            android:label="FlipActivity" >
+        </activity>
     </application>
 
 </manifest>
