@@ -15,10 +15,10 @@
         android:layout_marginBottom="20dp"/>
 
     <pl.droidsonroids.gif.GifImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/avance" />
+        android:src="@drawable/avance"/>
 
     <TextView
         android:layout_width="wrap_content"

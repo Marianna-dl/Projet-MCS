@@ -14,13 +14,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"/>
 
-    <ImageView
-        android:id="@+id/imageFlip"
-        android:layout_width="150dp"
-        android:layout_height="164dp"
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="75dp"
+        android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/flip"
-        android:layout_marginBottom="20dp" />
+        android:src="@drawable/flip"/>
 
     <TextView
         android:layout_width="wrap_content"
