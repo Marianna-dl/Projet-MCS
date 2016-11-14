@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Etat d'urgence"
-        android:id="@+id/textViewEtatUrgence"
+        android:id="@+id/textViewCommand"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"/>
 
@@ -26,9 +26,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Choix du type d'enregistrement :"
+        android:text="Type d&apos;enregistrement :"
         android:id="@+id/textViewChoix"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
+        android:textAlignment="center" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/radioGroupEtatUrgence"

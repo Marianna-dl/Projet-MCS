@@ -8,40 +8,64 @@
 
     <ScrollView
         android:layout_height="fill_parent"
-        android:layout_width="fill_parent">
+        android:layout_width="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/layoutAccueil"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:measureWithLargestChild="true"
-            android:layout_margin="@dimen/margePrincipale"
-            android:weightSum="1">
+            android:measureWithLargestChild="false"
+            android:weightSum="1"
+            android:layout_marginLeft="@dimen/margePrincipale"
+            android:layout_marginRight="@dimen/margePrincipale"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
 
-            <ImageView
-                android:id="@+id/imageJumpingSumo"
-                android:layout_width="150dp"
-                android:layout_height="164dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/jumping_sumo"
-                android:layout_marginBottom="20dp" />
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:id="@+id/imageView"
+                    android:src="@drawable/bulle1"
+                    android:layout_row="0"
+                    android:layout_column="6"
+                    android:layout_alignBottom="@+id/imageJumpingSumo"
+                    android:layout_alignParentEnd="true"
+                    android:paddingBottom="40dp" />
+
+                <ImageView
+                    android:id="@+id/imageJumpingSumo"
+                    android:layout_width="133dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/jumping_sumo"
+                    android:layout_column="5"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
+            </GridLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Choisissez une instruction à enregistrer : "
-                android:id="@+id/textView2"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="20dp"/>
+                android:id="@+id/title"
+                android:layout_gravity="center_horizontal" />
 
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/radioGroup"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:orientation="vertical"
-                android:checkedButton="@+id/radioAvance">
+                android:checkedButton="@+id/radioAvance"
+                android:layout_marginBottom="0dp"
+                android:paddingBottom="0dp"
+                android:layout_marginTop="15dp">
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -82,6 +106,13 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Arrête toi"
+                    android:id="@+id/radioArreteToi"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Tourne Droite"
                     android:id="@+id/radioTourneDroite"
                     android:checked="false" />
@@ -99,6 +130,7 @@
                     android:text="Fais un flip"
                     android:id="@+id/radioFlip"
                     android:checked="false" />
+
             </RadioGroup>
 
             <Button
@@ -110,7 +142,6 @@
                 android:layout_marginTop="20dp" />
 
         </LinearLayout>
-
     </ScrollView>
 
 </RelativeLayout>
