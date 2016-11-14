@@ -106,13 +106,6 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Arrête toi"
-                    android:id="@+id/radioArreteToi"
-                    android:checked="false" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="Tourne Droite"
                     android:id="@+id/radioTourneDroite"
                     android:checked="false" />
@@ -131,6 +124,12 @@
                     android:id="@+id/radioFlip"
                     android:checked="false" />
 
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Arrête toi"
+                    android:id="@+id/radioArreteToi"
+                    android:checked="false" />
             </RadioGroup>
 
             <Button
