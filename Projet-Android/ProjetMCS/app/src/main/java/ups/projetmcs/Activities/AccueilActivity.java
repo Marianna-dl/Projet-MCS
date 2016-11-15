@@ -86,13 +86,13 @@ public class AccueilActivity extends Activity {
                     Intent intent = new Intent(AccueilActivity.this, FlipActivity.class);
                     startActivity(intent);
                 } else if (checkedRadioButtonId == R.id.radioArreteToi) {
-                    Intent intent = new Intent(AccueilActivity.this, FlipActivity.class);
+                    Intent intent = new Intent(AccueilActivity.this, ArreteToiActivity.class);
                     startActivity(intent);
                 } else if (checkedRadioButtonId == R.id.radioDroite) {
-                    Intent intent = new Intent(AccueilActivity.this, FlipActivity.class);
+                    Intent intent = new Intent(AccueilActivity.this, DroiteActivity.class);
                     startActivity(intent);
               } else if (checkedRadioButtonId == R.id.radioTourneDroite) {
-                Intent intent = new Intent(AccueilActivity.this, FlipActivity.class);
+                Intent intent = new Intent(AccueilActivity.this, TourneDroiteActivity.class);
                 startActivity(intent);
               }
             }

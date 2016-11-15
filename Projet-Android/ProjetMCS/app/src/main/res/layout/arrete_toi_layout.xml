@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/margePrincipale" >
+    android:layout_margin="@dimen/margePrincipale"
+    android:background="@color/white">
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,7 +20,7 @@
         android:layout_width="186dp"
         android:layout_height="163dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/gauche"
+        android:src="@drawable/arretetoi"
         android:layout_marginBottom="20dp" />
 
     <TextView
