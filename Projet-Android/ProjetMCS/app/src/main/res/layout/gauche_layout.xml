@@ -3,7 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/margePrincipale"
     android:weightSum="1"
     android:background="@color/white">
 
@@ -14,6 +13,7 @@
         android:text="Gauche"
         android:id="@+id/textViewCommand"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"/>
 
     <ImageView
@@ -67,7 +67,7 @@
         android:id="@+id/btnRecord"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:background="#63e877"
+        android:background="@drawable/button_selector"
         android:paddingRight="10dp"
         android:paddingLeft="10dp" />
 
@@ -77,7 +77,7 @@
         android:text="Ecouter l'instruction"
         android:id="@+id/btnPlay"
         android:layout_gravity="center_horizontal"
-        android:background="#e9a11c"
+        android:background="@drawable/button_selector"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:layout_marginTop="10dp" />
