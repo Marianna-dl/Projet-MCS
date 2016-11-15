@@ -44,6 +44,18 @@
             android:name=".Activities.FlipActivity"
             android:label="FlipActivity" >
         </activity>
+        <activity
+            android:name=".Activities.DroiteActivity"
+            android:label="DroiteActivity" >
+        </activity>
+        <activity
+            android:name=".Activities.ArreteToiActivity"
+            android:label="ArreteToiActivity" >
+        </activity>
+        <activity
+            android:name=".Activities.TourneDroiteActivity"
+            android:label="TourneDroiteActivity" >
+        </activity>
     </application>
 
 </manifest>
