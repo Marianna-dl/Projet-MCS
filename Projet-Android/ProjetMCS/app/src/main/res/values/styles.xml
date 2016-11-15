@@ -6,6 +6,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:buttonStyle">@style/MonospaceTextViewStyle</item>
+        <item name="android:radioButtonStyle">@style/MonospaceRadioButtonStyle</item>
+    </style>
+
+    <style name="MonospaceTextViewStyle" parent="android:Widget.Button">
+        <item name="android:fontFamily">monospace</item>
+    </style>
+
+    <style name="MonospaceRadioButtonStyle" parent="android:Widget.CompoundButton.RadioButton">
+        <item name="android:fontFamily">monospace</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

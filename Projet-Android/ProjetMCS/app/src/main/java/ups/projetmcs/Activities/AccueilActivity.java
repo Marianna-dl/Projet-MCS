@@ -45,7 +45,6 @@ public class AccueilActivity extends Activity {
         ImageView image = (ImageView) findViewById(R.id.imageView);
         image.setImageDrawable(createMarkerIcon(getResources().getDrawable(R.drawable.bulle1), "Bienvenue !", 120, 120));
 
-
         String folder_main = "corpus";
         File f = new File(Environment.getExternalStorageDirectory(), folder_main);
         if (!f.exists()) {

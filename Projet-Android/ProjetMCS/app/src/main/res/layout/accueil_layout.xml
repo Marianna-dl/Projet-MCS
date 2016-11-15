@@ -73,72 +73,83 @@
                     android:text="Avance"
                     android:id="@+id/radioAvance"
                     android:checked="false"
-                    android:layout_marginRight="50dp" />
+                    android:layout_marginRight="50dp"
+                    android:typeface="monospace" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Recule"
                     android:id="@+id/radioRecule"
-                    android:checked="false" />
+                    android:checked="false"
+                    android:typeface="monospace" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gauche"
                     android:id="@+id/radioGauche"
-                    android:checked="false" />
+                    android:checked="false"
+                    android:typeface="monospace" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tourne Gauche"
                     android:id="@+id/radioTourneGauche"
-                    android:checked="false" />
+                    android:checked="false"
+                    android:typeface="monospace" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Droite"
                     android:id="@+id/radioDroite"
-                    android:checked="false" />
+                    android:checked="false"
+                    android:typeface="monospace" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tourne Droite"
                     android:id="@+id/radioTourneDroite"
-                    android:checked="false" />
+                    android:checked="false"
+                    android:typeface="monospace" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Etat d&apos;urgence"
                     android:id="@+id/radioUrgence"
-                    android:checked="false" />
+                    android:checked="false"
+                    android:typeface="monospace" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fais un flip"
                     android:id="@+id/radioFlip"
-                    android:checked="false" />
+                    android:checked="false"
+                    android:typeface="monospace" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Arrête toi"
                     android:id="@+id/radioArreteToi"
-                    android:checked="false" />
+                    android:checked="false"
+                    android:typeface="monospace" />
             </RadioGroup>
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
                 android:text="Valider"
                 android:id="@+id/btnValide"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_rounded_corners"
+                />
 
         </LinearLayout>
     </ScrollView>
