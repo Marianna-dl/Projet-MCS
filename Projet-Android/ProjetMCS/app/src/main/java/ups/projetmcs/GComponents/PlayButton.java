@@ -55,10 +55,10 @@ public class PlayButton extends Button {
             onPlay(mStartPlaying);
             if (mStartPlaying) {
                 setText("Arrêter l'écoute");
-                setBackgroundColor(Color.RED);
+                setBackgroundResource(R.drawable.button_playstate);
             } else {
                 setText("Ecouter l'instruction");
-                setBackgroundColor(0xFFE9A11C);
+                setBackgroundResource(R.drawable.button_selector);
             }
             mStartPlaying = !mStartPlaying;
         }
