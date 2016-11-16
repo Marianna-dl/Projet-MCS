@@ -85,8 +85,6 @@ public class EtatUrgenceActivity extends Activity {
     public void onBackPressed() {
         super.onBackPressed();
         stopBeeDoSound();
-        Intent intent = new Intent(EtatUrgenceActivity.this, AccueilActivity.class);
-        startActivity(intent);
     }
 
     @Override
