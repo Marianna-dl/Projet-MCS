@@ -1,6 +1,7 @@
 package ups.projetmcs.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -75,6 +76,12 @@ public class EtatUrgenceActivity extends Activity {
         mPlayer.start();
     }
 
+    @Override
+    public void onBackPressed() {
+        mPlayer.stop();
+        Intent intent = new Intent(EtatUrgenceActivity.this, AccueilActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public void onPause() {
