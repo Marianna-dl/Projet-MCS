@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:paddingTop="20dp"
     android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     android:background="@color/white">
 
     <TextView
@@ -22,7 +23,7 @@
         android:layout_height="163dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/arretetoi"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"/>
 
     <TextView
         android:layout_width="fill_parent"
@@ -57,26 +58,29 @@
 
     </RadioGroup>
 
-    <ups.projetmcs.GComponents.RecordButton
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="Enregistrer l'instruction"
-        android:id="@+id/btnRecord"
-        android:layout_gravity="center_horizontal"
+    <LinearLayout
+        android:id="@+id/page_buttons"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/button_selector"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp" />
+        android:gravity="center_horizontal" >
 
-    <ups.projetmcs.GComponents.PlayButton
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="Ecouter l'instruction"
-        android:id="@+id/btnPlay"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/button_selector"
-        android:layout_marginTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp" />
+        <ups.projetmcs.GComponents.RecordButton
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/btnRecord"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/record"
+            android:layout_marginRight="40dp"/>
+
+        <ups.projetmcs.GComponents.PlayButton
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/btnPlay"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/play" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -50,11 +50,9 @@ public class RecordButton extends Button {
         public void onClick(View v) {
             onRecord(mStartRecording);
             if (mStartRecording) {
-                setText("Arrêter l'enregistrement");
-                setBackgroundResource(R.drawable.button_recordstate);
+                setBackgroundResource(R.drawable.stop);
             } else {
-                setText("Enregistrer l'instruction");
-                setBackgroundResource(R.drawable.button_selector);
+                setBackgroundResource(R.drawable.record);
             }
             mStartRecording = !mStartRecording;
         }

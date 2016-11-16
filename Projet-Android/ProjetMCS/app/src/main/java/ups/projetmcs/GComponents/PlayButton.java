@@ -54,11 +54,9 @@ public class PlayButton extends Button {
         public void onClick(View v) {
             onPlay(mStartPlaying);
             if (mStartPlaying) {
-                setText("Arrêter l'écoute");
-                setBackgroundResource(R.drawable.button_playstate);
+                setBackgroundResource(R.drawable.stop);
             } else {
-                setText("Ecouter l'instruction");
-                setBackgroundResource(R.drawable.button_selector);
+                setBackgroundResource(R.drawable.play);
             }
             mStartPlaying = !mStartPlaying;
         }
