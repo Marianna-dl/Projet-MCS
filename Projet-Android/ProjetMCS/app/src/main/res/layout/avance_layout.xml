@@ -3,6 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="20dp"
+    android:paddingLeft="20dp"
     android:background="@color/white">
 
     <TextView
@@ -12,7 +14,6 @@
         android:text="Avance"
         android:id="@+id/textViewCommand"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"/>
 
     <pl.droidsonroids.gif.GifImageView
@@ -54,6 +55,7 @@
             android:layout_marginRight="50dp" />
 
     </RadioGroup>
+
 
     <ups.projetmcs.GComponents.RecordButton
         android:layout_width="wrap_content"
