@@ -1,18 +1,19 @@
 package ups.projetmcs.GComponents;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import java.io.IOException;
 
 import ups.projetmcs.Activities.AccueilActivity;
+import ups.projetmcs.Activities.EtatUrgenceActivity;
 import ups.projetmcs.R;
 
 /**
@@ -25,6 +26,8 @@ public class RecordButton extends Button {
     private static String corpusFolder;
     private String namefile;
     final Context context;
+    private MediaPlayer mPlayerBackgroundNoise = null;
+    private  MediaPlayer mPlayerBeeDoSound = null;
 
     public RecordButton(Context context) {
         super(context);
@@ -66,8 +69,11 @@ public class RecordButton extends Button {
     }
 
     private void startRecording() {
+        stopBeeDoSound();
+        if (corpusFolder == AccueilActivity.CORPUS_BRUITE) {
+            playBackgroundNoise();
+        }
         Log.v(LOG_TAG, corpusFolder);
-
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
@@ -87,6 +93,30 @@ public class RecordButton extends Button {
         mRecorder.stop();
         mRecorder.release();
         mRecorder = null;
+        stopBackgroundNoise();
+    }
+
+    private void playBackgroundNoise() {
+        if (mPlayerBackgroundNoise != null) {
+            mPlayerBackgroundNoise.stop();
+            mPlayerBackgroundNoise.release();
+        }
+        mPlayerBackgroundNoise = MediaPlayer.create(context, R.raw.bruit_fond);
+        mPlayerBackgroundNoise.start();
+    }
+
+    public void stopBackgroundNoise() {
+        if (mPlayerBackgroundNoise != null) {
+            mPlayerBackgroundNoise.release();
+            mPlayerBackgroundNoise = null;
+        }
+    }
+
+    public void stopBeeDoSound() {
+        if (mPlayerBeeDoSound != null) {
+            mPlayerBeeDoSound.release();
+            mPlayerBeeDoSound = null;
+        }
     }
 
     public MediaRecorder getmRecorder() {
@@ -104,4 +134,7 @@ public class RecordButton extends Button {
     public void setNameFile(String nameFile){
         this.namefile = nameFile;
     }
+
+    public void setPlayBeeDoSound(MediaPlayer mPlayerBeeDooSound) { this.mPlayerBeeDoSound = mPlayerBeeDooSound;}
+
 }
