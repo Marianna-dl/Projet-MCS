@@ -13,64 +13,77 @@
 
 using namespace std;
 
- int main ()
-{
-int i;
-int j=0;
 
-char * chemin = "corpus/dronevolant_nonbruite/F02_arretetoi.wav";
-FILE **p_wav = (FILE**)malloc (sizeof(FILE*));
-struct wavfile *p_header ;
-int tailleSeq;
-int16_t  buffer;
+void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc ){
+	
+	int i;
+
+	FILE **p_wav = (FILE**)malloc (sizeof(FILE*));
+	struct wavfile *p_header = (wavfile*)malloc(sizeof(wavfile)) ;
+	int16_t  buffer;
+	
+	int16_t * xFiltered=(int16_t*)malloc(sizeof(int16_t));
+	int  newLength;
+	float threshold = 0.0;
 
 
-	wavRead ( p_wav, chemin,p_header ) ;//-----------------------ok compile
+	wavRead ( p_wav, chemin, p_header ) ;//-----------------------ok compile
 
 	int16_t* result = new int16_t[p_header->totallength];
 	int x = 0;
 	int cpt = 0;
-			std::cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
-		std::cout.precision(5);
+	std::cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
+	std::cout.precision(5);
+	
    while(fread(&buffer,sizeof(buffer),1,*p_wav)>0){
 	result[x] = buffer;
 	cpt++;
-	if(x<30){
-
-		cout << result[x]<<" \n" ;
-		
-	}
 	x++;
-   }
+   }	
+   cout<<"\n"<<cpt<<"\n";
+   fclose(*p_wav);
+	
+   removeSilence(result, cpt, &xFiltered, &newLength, threshold);
    
-  // cout << " \n"<<cpt<<" " ;
+   cout<<newLength<<"\n";
    
-   /*for(x = 0; x<20;x++){
-	   
-	   cout << result1[x]<<" " ;
-   }*/
+   float *X_mfcc1=(float*)malloc(sizeof(float));
+   int length_xmfcc1;
    
-     /* for(x = 0; x<20;x++){
-	   
-	   cout << result<<" " ;
-   }*/
+   computeMFCC(&X_mfcc1, &length_xmfcc1, xFiltered, newLength ,p_header->frequency, 512, 256, 13, 20);
    
-   
-    
-   
-    //fermeture du fichier 
-    fclose(*p_wav);  
- cout << "\n" ;
-/*void removeSilence(int16_t * x, int Nx, int16_t ** xFiltered, int * newLength, float threshold)*/
- //removeSilence(, int Nx, int16_t ** xFiltered, int * newLength, float threshold)
-// execv("cat","cat",p_wav,NULL);
-//  system ("cat corpus/dronevolant_nonbruite/F01_arretetoi.wav");
-// cout("\n d= %d \n",tailleSeq);
-   /* for (i=0; i < j; i++){ 
-		cout << p_header->signal[i]<<" " ;
-    }*/
-   /*cout << "taille effective " << j << "taille total"<<p_header->totallength ;*/
-// printf("\n byt pour Mr chiant in data= %d \n",p_header->bytes_in_data);
+   cout<<length_xmfcc1<<"\n";
+	
+}
+
+ int main ()
+{
+	int i=0;
+	float D=0.25;
+	
+	char * chemin = "corpus/dronevolant_nonbruite/F02_arretetoi.wav";
+	float *X_mfcc1=(float*)malloc(sizeof(float));
+	int length_xmfcc1;
+	parametrisation(chemin,&X_mfcc1,&length_xmfcc1);
+	
+	char * chemin2 = "corpus/dronevolant_nonbruite/F01_arretetoi.wav";
+	float *X_mfcc2=(float*)malloc(sizeof(float));
+	int length_xmfcc2;
+	parametrisation(chemin,&X_mfcc2,&length_xmfcc2);
+	
+/*
+	/*parametrisation(chemin,&X_mfcc2,&length_xmfcc2);
+D= dtw(length_xmfcc1, length_xmfcc2, 13, X_mfcc1, X_mfcc2);
+
+ cout <<"------------"<< length_xmfcc1 <<"-------------------------------------------------" ;  
+   for (i=0; i < length_xmfcc1; i++){ 
+		cout << X_mfcc1[i]<<"  " ;
+    }
+	
+	cout <<"\n  d=  "<< D <<"  .\n" ;  */
+	
+
+
   return 0;
   /*copute
   dtw*/

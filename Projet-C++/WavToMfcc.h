@@ -33,7 +33,6 @@ struct wavfile
 	short     bits_per_sample;  // Number of bits per sample
 	char        data[4];        // should always contain "data"
 	int     bytes_in_data;      // Data of the file
-
 };
 
 /**

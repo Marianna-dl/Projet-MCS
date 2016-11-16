@@ -23,7 +23,6 @@
 #include "WavToMfcc.h"
 #include <omp.h>
 
-
 /**
 * Safety function to ensure the system use big endian
 *
@@ -59,8 +58,6 @@ void wavRead(FILE **p_wav, char *filename, wavfile *p_header) {
 		fprintf(stderr, "Can't read input file header %s\n", filename);
 		exit(1);
 	}
-	
-
 
 	// if wav file isn't the same endianness than the current environment
 	// we quit
