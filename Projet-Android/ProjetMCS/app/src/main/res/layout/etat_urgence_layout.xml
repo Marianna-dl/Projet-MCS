@@ -15,7 +15,7 @@
         android:text="Etat d'urgence"
         android:id="@+id/textViewCommand"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="40dp"/>
 
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="199dp"
@@ -23,7 +23,7 @@
         android:layout_gravity="center_horizontal"
         android:src="@drawable/etat_urgence"
         android:id="@+id/gifImageView"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="50dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:gravity="center_horizontal" >
 
         <ups.projetmcs.GComponents.RecordButton
