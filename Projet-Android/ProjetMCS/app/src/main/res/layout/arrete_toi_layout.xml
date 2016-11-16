@@ -3,6 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="20dp"
+    android:paddingLeft="20dp"
     android:background="@color/white">
 
     <TextView
@@ -12,7 +14,6 @@
         android:text="Arrête toi"
         android:id="@+id/textViewCommand"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"/>
 
     <ImageView
@@ -38,22 +39,20 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:checkedButton="@+id/radioBruite">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enregistrement bruité"
-            android:id="@+id/radioBruite"
-            android:checked="true"
-            android:layout_marginRight="50dp" />
+        android:checkedButton="@+id/radioNonBruite">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enregistrement non bruité"
             android:id="@+id/radioNonBruite"
-            android:checked="false"
+            android:layout_marginRight="50dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enregistrement bruité"
+            android:id="@+id/radioBruite"
             android:layout_marginRight="50dp" />
 
     </RadioGroup>
