@@ -48,10 +48,10 @@ public class RecordButton extends Button {
             onRecord(mStartRecording);
             if (mStartRecording) {
                 setText("Arrêter l'enregistrement");
-                setBackgroundColor(Color.RED);
+                setBackgroundResource(R.drawable.button_recordstate);
             } else {
                 setText("Enregistrer l'instruction");
-                setBackgroundColor(0xFF63E877);
+                setBackgroundResource(R.drawable.button_selector);
             }
             mStartRecording = !mStartRecording;
         }
