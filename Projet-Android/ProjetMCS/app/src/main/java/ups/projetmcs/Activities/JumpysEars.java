@@ -2,9 +2,11 @@ package ups.projetmcs.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
+import android.widget.TextView;
 
 import ups.projetmcs.R;
 
@@ -17,6 +19,11 @@ public class JumpysEars extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.jumpys_ears);
+
+        TextView tv =(TextView) findViewById(R.id.textJumpysEars);
+        Typeface typeFace = Typeface.createFromAsset(getAssets(),"fonts/Classic_Robot.otf");
+        tv.setTypeface(typeFace);
+
         waitSecond();
     }
 
