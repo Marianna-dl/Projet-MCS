@@ -24,7 +24,7 @@ void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc){
 	
 	int16_t * xFiltered=(int16_t*)malloc(sizeof(int16_t));
 	int  newLength;
-	float threshold = 0;
+	float threshold = 0.1;
 
 
 	wavRead ( p_wav, chemin, p_header ) ;//-----------------------ok compile
@@ -40,33 +40,24 @@ void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc){
 	cpt++;
 	x++;
    }	
-   cout<<"\n"<<cpt<<"\n";
+   
    fclose(*p_wav);
 	
    removeSilence(result, cpt, &xFiltered, &newLength, threshold);
-   
- 
-   
-
    computeMFCC(X_mfcc, length_xmfcc, xFiltered, newLength ,p_header->frequency, 512, 256, 13, 26);
    
    
 	std::cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
 	std::cout.precision(5);
 
-	      cout<<"\n\n";
-	
-		
-	
-   
- 
-	
+	free(p_wav);
+	free(p_header);
+	free(xFiltered);
 }
 
  int main ()
 {
-	int i=0;
-	float D=0.25;
+	float D;
 	
 	char * chemin = "corpus/dronevolant_nonbruite/M01_arretetoi.wav";
 	float *X_mfcc1=(float*)malloc(sizeof(float));
@@ -74,42 +65,18 @@ void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc){
 	parametrisation(chemin,&X_mfcc1,&length_xmfcc1);
 	
 	
-//	cout<<"lenght after compute  "<<length_xmfcc1<<"\n";
-	
-	/*for(i = 0; i<10; i++){
-		cout<<"lenght after compute "<<X_mfcc1[i]<<"\n";
-	}*/
-	
-	
-	chemin = "corpus/dronevolant_nonbruite/M02_arretetoi.wav";
+	chemin = "corpus/dronevolant_nonbruite/M01_arretetoi.wav";
 	float *X_mfcc2=(float*)malloc(sizeof(float));
 	int length_xmfcc2;
 	parametrisation(chemin,&X_mfcc2,&length_xmfcc2);
-	
-	
-//	cout<<"lenght after compute "<<length_xmfcc2<<"\n";
-	
-	/*for(i = 0; i<10; i++){
-		cout<<"lenght after compute "<<X_mfcc2[i]<<"\n";
-	}*/
-	
+
 	
 	D = dtw(length_xmfcc1, length_xmfcc2, 13, X_mfcc1, X_mfcc2);
-/*
- cout <<"------------"<< length_xmfcc1 <<"-------------------------------------------------" ;  
-   for (i=0; i < length_xmfcc1; i++){ 
-		cout << X_mfcc1[i]<<"  " ;
-    }
-	
-	cout <<"\n  d=  "<< D <<"  .\n" ;  
-	
-*/
 
 	cout <<"\n  d =  "<< D <<"  .\n" ;  
-
+	free(X_mfcc1);
+	free(X_mfcc2);
   return 0;
-  /*copute
-  dtw*/
   
 } 
 

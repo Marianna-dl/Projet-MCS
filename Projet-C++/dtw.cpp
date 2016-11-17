@@ -14,12 +14,8 @@
 #include <math.h>
 #include <iostream>
 #include "dtw.h"
-//#define FLOAT_MAX 10000000.0 
-#define FLOAT_MAX 100
+#define FLOAT_MAX 10000000.0 
 
-float distEucl(float* c_k, float* c_unk , int dim_mfcc,int i,int j){
-	return (float)i;
-}
 
 float min (float f1,float f2,float f3){
 	if(f1<f2 && f1<f3)
@@ -32,39 +28,14 @@ float min (float f1,float f2,float f3){
 
 using namespace std;
 
-//mettre double* a la place de double[] ? float ?
-float distance_vect(float* sequence1,float* sequence2,int indicei,int indicej, int dim_mfcc)  //int tailleMot1 , int tailleMot2 ? virer le dim_mfcc ?
-{
-	//declarer v1 et v2 ?
-	int const tailleTableau(dim_mfcc);
-	
-	
-	
-	float v1[dim_mfcc];
-	float v2[dim_mfcc];
 
+float distance_vect(float* sequence1,float* sequence2,int indicei,int indicej)  
+{  
 	
-	//deja transposé
-	//cout << "le 1er vecteur est : " << endl;
-	for (int i(0); i<dim_mfcc ; i++){ 
-        v1[i] = sequence1[i + dim_mfcc*indicei];
-	//cout << v1[i];
-    }
-	//cout << "" << endl;
+	float d =  sequence1[indicei]-sequence2[indicej]; 
 	
-	for (int i(0); i<dim_mfcc ; i++){ 
-       v2[i] = sequence2[ i + dim_mfcc*indicej];
-    }
-	
-    float d(0);
-    for (int i(0); i<dim_mfcc ; i++){ 
-        d = d + pow((v1[i]-v2[i]),2); 
-    }
-    d = sqrt(d);
-	
-	cout << "vect " << d<< "\n";
-    return d;
-    //sqrt((sum(a-b)).^2)
+	return abs(d);
+    
 }
 
 
@@ -101,42 +72,30 @@ float dtw(int n_ck, int n_cunk, int dim_mfcc, float* c_k, float* c_unk) {
 		ptr_g[i*(n_ck+1)]=FLOAT_MAX;
 		
 	}
+	
+	
+	for(i=1;i<n_ck+1;i++){
+		ptr_g[i]=FLOAT_MAX;
+	}
+	
 	for(i=1;i<n_ck+1;i++)
 	{
-		ptr_g[i]=FLOAT_MAX;
 		for(j=1;j<n_cunk+1;j++)
 		{ 
-			dist=distance_vect( c_k, c_unk ,i,j,dim_mfcc);
-			f1=ptr_g[(i-1)*n_ck+j]+d1*dist;
-			f2=ptr_g[(i-1)*n_ck+j-1]+d1*dist;
-			f3=ptr_g[(i)*n_ck+j-1]+d1*dist;
-			ptr_g[i*n_ck+j]=min(f1,f2,f3);
-		
+			dist=distance_vect( c_k, c_unk ,i-1,j-1);
 			
-		}
-			cout<< "\n ";
-	}
-	
-	for(i = 0; i< n_ck+1; i++){
+			f1=ptr_g[(i-1)*(n_ck+1)+j]+d1*dist;
+			f2=ptr_g[(i-1)*(n_ck+1)+j-1]+d1*dist;
+			f3=ptr_g[i*(n_ck+1)+(j-1)]+d1*dist;
+			ptr_g[i*(n_ck+1)+j]=min(f1,f2,f3);
 		
-		for(j = 0; j<n_cunk+1 ; j++){
-			cout<< ptr_g[i*5+j]<<" ";
+
 		}
-		cout<< "\n ";
+			
 	}
 	
-	//D=ptr_g[i*n_ck+n_cunk]/(n_ck+n_cunk);
-	D=ptr_g[nb_elem-1]/(n_ck+n_cunk);
-	/*for(i=0;i<n_ck;i++)
-	{
-		printf(" \n");
-		for(j=0;j<n_cunk;j++)
-		{
-			printf("%f ",ptr_g[i*n_ck+j]);
-		}
-	}*/
-	//printf("\n d= %f \n",ptr_g[nb_elem-1]);
-	//free (ptr_g);
+	D=ptr_g[nb_elem-1]/(n_ck+1+n_cunk+1);
+	free(ptr_g);
 	return D;
 
 }
@@ -167,7 +126,7 @@ end
 D=g(tailleS1,tailleS2)/((tailleS1)+(tailleS2));
 end
 */
-int main ()
+/*int main ()
 {
 float test=1.1;
 int n_ck=4;
@@ -178,11 +137,11 @@ int n_ck=4;
  float f1=1.0;
  float f2=1.0;
  float f3=1.0;
-  	float sequence1[4] = {2, 1, 4, 5}; 
-	float sequence2[4] = {2, 1, 2, 5}; 
-f1= dtw( 4,4,dim_mfcc,  sequence1,sequence2);
+  	float sequence1[10] = {-29.47844,4.56099,0.39657,-0.01331,0.04076,2.17803,-0.76123,-0.16993,1.01295,-1.13256}; 
+	float sequence2[10] = {-29.47844,4.56099,0.39657,-0.01331,0.04076,2.17803,-0.76123,-0.16993,1.01295,-1.13256}; 
+f1= dtw( 10,10,dim_mfcc,  sequence1,sequence2);
  printf("\n d= %f \n",f1);
 
   return 0;
-}   
-
+}  
+*/
