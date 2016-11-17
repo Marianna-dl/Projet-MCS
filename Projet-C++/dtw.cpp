@@ -37,20 +37,23 @@ float distance_vect(float* sequence1,float* sequence2,int indicei,int indicej, i
 {
 	//declarer v1 et v2 ?
 	int const tailleTableau(dim_mfcc);
-	float v1[tailleTableau];
-	float v2[tailleTableau];
+	
+	
+	
+	float v1[dim_mfcc];
+	float v2[dim_mfcc];
 
 	
 	//deja transposé
 	//cout << "le 1er vecteur est : " << endl;
 	for (int i(0); i<dim_mfcc ; i++){ 
-        v1[i] = sequence1[indicei + dim_mfcc*i];
+        v1[i] = sequence1[i + dim_mfcc*indicei];
 	//cout << v1[i];
     }
 	//cout << "" << endl;
 	
 	for (int i(0); i<dim_mfcc ; i++){ 
-       v2[i] = sequence2[indicej + dim_mfcc*i];
+       v2[i] = sequence2[ i + dim_mfcc*indicej];
     }
 	
     float d(0);
@@ -58,6 +61,8 @@ float distance_vect(float* sequence1,float* sequence2,int indicei,int indicej, i
         d = d + pow((v1[i]-v2[i]),2); 
     }
     d = sqrt(d);
+	
+	cout << "vect " << d<< "\n";
     return d;
     //sqrt((sum(a-b)).^2)
 }
@@ -83,10 +88,11 @@ float dtw(int n_ck, int n_cunk, int dim_mfcc, float* c_k, float* c_unk) {
 	int i,j;
 	float f1,f2,f3,dist,D;
 	int nb_elem = n_ck*n_cunk;
-	float * ptr_g = (float*) malloc (nb_elem);
+	float * ptr_g = (float*) malloc (sizeof(float) * nb_elem);
+	
 	for(i=0;i<nb_elem;i++)
 	{
-		ptr_g[i]=0;
+		ptr_g[i] = 0;
 	}
 	for(i=1;i<n_ck;i++)
 	{
@@ -107,17 +113,18 @@ float dtw(int n_ck, int n_cunk, int dim_mfcc, float* c_k, float* c_unk) {
 	}
 	//D=ptr_g[i*n_ck+n_cunk]/(n_ck+n_cunk);
 	D=ptr_g[nb_elem-1]/(n_ck+n_cunk);
-	for(i=0;i<n_ck;i++)
+	/*for(i=0;i<n_ck;i++)
 	{
 		printf(" \n");
 		for(j=0;j<n_cunk;j++)
 		{
 			printf("%f ",ptr_g[i*n_ck+j]);
 		}
-	}
+	}*/
 	//printf("\n d= %f \n",ptr_g[nb_elem-1]);
 	//free (ptr_g);
-return D;
+	return D;
+
 }
 
 
@@ -146,7 +153,7 @@ end
 D=g(tailleS1,tailleS2)/((tailleS1)+(tailleS2));
 end
 */
-/* int main ()
+int main ()
 {
 float test=1.1;
 int n_ck=4;
@@ -157,11 +164,11 @@ int n_ck=4;
  float f1=1.0;
  float f2=1.0;
  float f3=1.0;
-  	float sequence1[9] = {2, 1, 1, 1, 3, 1, 2, 5, 1}; 
-	float sequence2[9] = {2, 1, 1, 1, 3, 1, 2, 5, 1}; 
-f1= dtw( 9,9,dim_mfcc,  sequence1,sequence2);
+  	float sequence1[4] = {2, 1, 4, 5}; 
+	float sequence2[4] = {2, 1, 4, 5}; 
+f1= dtw( 4,4,dim_mfcc,  sequence1,sequence2);
  printf("\n d= %f \n",f1);
 
   return 0;
-}   */
+}   
 

@@ -14,7 +14,7 @@
 using namespace std;
 
 
-void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc ){
+void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc){
 	
 	int i;
 
@@ -24,7 +24,7 @@ void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc ){
 	
 	int16_t * xFiltered=(int16_t*)malloc(sizeof(int16_t));
 	int  newLength;
-	float threshold = 0.0;
+	float threshold = 0;
 
 
 	wavRead ( p_wav, chemin, p_header ) ;//-----------------------ok compile
@@ -45,14 +45,21 @@ void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc ){
 	
    removeSilence(result, cpt, &xFiltered, &newLength, threshold);
    
-   cout<<newLength<<"\n";
+ 
    
-   float *X_mfcc1=(float*)malloc(sizeof(float));
-   int length_xmfcc1;
+
+   computeMFCC(X_mfcc, length_xmfcc, xFiltered, newLength ,p_header->frequency, 512, 256, 13, 26);
    
-   computeMFCC(&X_mfcc1, &length_xmfcc1, xFiltered, newLength ,p_header->frequency, 512, 256, 13, 20);
    
-   cout<<length_xmfcc1<<"\n";
+	std::cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
+	std::cout.precision(5);
+
+	      cout<<"\n\n";
+	
+		
+	
+   
+ 
 	
 }
 
@@ -61,28 +68,44 @@ void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc ){
 	int i=0;
 	float D=0.25;
 	
-	char * chemin = "corpus/dronevolant_nonbruite/F02_arretetoi.wav";
+	char * chemin = "corpus/dronevolant_nonbruite/M01_arretetoi.wav";
 	float *X_mfcc1=(float*)malloc(sizeof(float));
 	int length_xmfcc1;
 	parametrisation(chemin,&X_mfcc1,&length_xmfcc1);
 	
-	char * chemin2 = "corpus/dronevolant_nonbruite/F01_arretetoi.wav";
+	
+//	cout<<"lenght after compute  "<<length_xmfcc1<<"\n";
+	
+	/*for(i = 0; i<10; i++){
+		cout<<"lenght after compute "<<X_mfcc1[i]<<"\n";
+	}*/
+	
+	
+	chemin = "corpus/dronevolant_nonbruite/M02_arretetoi.wav";
 	float *X_mfcc2=(float*)malloc(sizeof(float));
 	int length_xmfcc2;
 	parametrisation(chemin,&X_mfcc2,&length_xmfcc2);
 	
+	
+//	cout<<"lenght after compute "<<length_xmfcc2<<"\n";
+	
+	/*for(i = 0; i<10; i++){
+		cout<<"lenght after compute "<<X_mfcc2[i]<<"\n";
+	}*/
+	
+	
+	D = dtw(length_xmfcc1, length_xmfcc2, 13, X_mfcc1, X_mfcc2);
 /*
-	/*parametrisation(chemin,&X_mfcc2,&length_xmfcc2);
-D= dtw(length_xmfcc1, length_xmfcc2, 13, X_mfcc1, X_mfcc2);
-
  cout <<"------------"<< length_xmfcc1 <<"-------------------------------------------------" ;  
    for (i=0; i < length_xmfcc1; i++){ 
 		cout << X_mfcc1[i]<<"  " ;
     }
 	
-	cout <<"\n  d=  "<< D <<"  .\n" ;  */
+	cout <<"\n  d=  "<< D <<"  .\n" ;  
 	
+*/
 
+	cout <<"\n  d =  "<< D <<"  .\n" ;  
 
   return 0;
   /*copute
