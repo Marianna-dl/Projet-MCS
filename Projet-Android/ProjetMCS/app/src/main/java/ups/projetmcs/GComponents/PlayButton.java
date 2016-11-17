@@ -31,6 +31,7 @@ public class PlayButton extends Button {
     final Context context;
     private static String corpusFolder;
     private String namefile;
+    private  MediaPlayer mPlayerBeeDoSound = null;
 
     public PlayButton(Context context) {
         super(context);
@@ -71,6 +72,7 @@ public class PlayButton extends Button {
     }
 
     private void startPlaying() {
+        stopBeeDoSound();
         Log.v(LOG_TAG, corpusFolder);
         mPlayer = new MediaPlayer();
         try {
@@ -85,6 +87,13 @@ public class PlayButton extends Button {
     private void stopPlaying() {
         mPlayer.release();
         mPlayer = null;
+    }
+
+    public void stopBeeDoSound() {
+        if (mPlayerBeeDoSound != null) {
+            mPlayerBeeDoSound.release();
+            mPlayerBeeDoSound = null;
+        }
     }
 
     public MediaPlayer getmPlayer() {
@@ -102,4 +111,6 @@ public class PlayButton extends Button {
     public void setNameFile(String nameFile){
         this.namefile = nameFile;
     }
+
+    public void setPlayBeeDoSound(MediaPlayer mPlayerBeeDooSound) { this.mPlayerBeeDoSound = mPlayerBeeDooSound;}
 }

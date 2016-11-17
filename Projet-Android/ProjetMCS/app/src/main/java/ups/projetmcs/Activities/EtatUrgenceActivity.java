@@ -32,6 +32,7 @@ public class EtatUrgenceActivity extends Activity {
         mPlayButton = (PlayButton) findViewById(R.id.btnPlay);
         playBeeDoSound();
         mRecordButton.setPlayBeeDoSound(mPlayerBeeDoSound);
+        mPlayButton.setPlayBeeDoSound(mPlayerBeeDoSound);
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroupEtatUrgence);
         mRecordButton.setCorpusFolder(AccueilActivity.CORPUS_NON_BRUITE);
