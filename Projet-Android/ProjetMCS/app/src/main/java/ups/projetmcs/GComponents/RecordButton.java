@@ -28,6 +28,7 @@ public class RecordButton extends Button {
     final Context context;
     private MediaPlayer mPlayerBackgroundNoise = null;
     private  MediaPlayer mPlayerBeeDoSound = null;
+    private  PlayButton playButton;
 
     public RecordButton(Context context) {
         super(context);
@@ -68,6 +69,7 @@ public class RecordButton extends Button {
 
     private void startRecording() {
         stopBeeDoSound();
+        disablePlayButton();
         if (corpusFolder == AccueilActivity.CORPUS_BRUITE) {
             playBackgroundNoise();
         }
@@ -92,6 +94,7 @@ public class RecordButton extends Button {
         mRecorder.release();
         mRecorder = null;
         stopBackgroundNoise();
+        enablePlayButton();
     }
 
     private void playBackgroundNoise() {
@@ -117,6 +120,16 @@ public class RecordButton extends Button {
         }
     }
 
+    private void disablePlayButton() {
+        playButton.setBackgroundResource(R.drawable.play_disable);
+        playButton.setEnabled(false);
+    }
+
+    private void enablePlayButton() {
+        playButton.setBackgroundResource(R.drawable.play);
+        playButton.setEnabled(true);
+    }
+
     public MediaRecorder getmRecorder() {
         return mRecorder;
     }
@@ -135,4 +148,5 @@ public class RecordButton extends Button {
 
     public void setPlayBeeDoSound(MediaPlayer mPlayerBeeDooSound) { this.mPlayerBeeDoSound = mPlayerBeeDooSound;}
 
+    public void setPlayButton(PlayButton playButton) { this.playButton = playButton; }
 }

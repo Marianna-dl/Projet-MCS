@@ -36,6 +36,8 @@ public class ArreteToiActivity extends Activity {
         mPlayButton.setCorpusFolder(AccueilActivity.CORPUS_NON_BRUITE);
         mRecordButton.setNameFile(NAME_FILE);
         mPlayButton.setNameFile(NAME_FILE);
+        mRecordButton.setPlayButton(mPlayButton);
+        mPlayButton.setRecordButton(mRecordButton);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {

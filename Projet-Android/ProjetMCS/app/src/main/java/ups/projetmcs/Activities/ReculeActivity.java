@@ -32,6 +32,8 @@ public class ReculeActivity extends Activity {
         mPlayButton.setCorpusFolder(AccueilActivity.CORPUS_NON_BRUITE);
         mRecordButton.setNameFile(NAME_FILE);
         mPlayButton.setNameFile(NAME_FILE);
+        mRecordButton.setPlayButton(mPlayButton);
+        mPlayButton.setRecordButton(mRecordButton);
 
         TextView tv =(TextView) findViewById(R.id.textViewChoix);
         Typeface typeFace = Typeface.createFromAsset(getAssets(),"fonts/Classic_Robot.otf");
