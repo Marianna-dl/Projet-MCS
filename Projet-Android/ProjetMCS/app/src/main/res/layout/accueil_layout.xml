@@ -56,7 +56,8 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Choisissez une instruction à enregistrer : "
                 android:id="@+id/title"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"/>
 
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/radioGroup"
