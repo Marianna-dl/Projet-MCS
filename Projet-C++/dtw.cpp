@@ -14,8 +14,8 @@
 #include <math.h>
 #include <iostream>
 #include "dtw.h"
-#define FLOAT_MAX 10000000.0 
-
+//#define FLOAT_MAX 10000000.0 
+#define FLOAT_MAX 100
 
 float distEucl(float* c_k, float* c_unk , int dim_mfcc,int i,int j){
 	return (float)i;
@@ -87,30 +87,44 @@ float dtw(int n_ck, int n_cunk, int dim_mfcc, float* c_k, float* c_unk) {
 	int d3=1;
 	int i,j;
 	float f1,f2,f3,dist,D;
-	int nb_elem = n_ck*n_cunk;
+	int nb_elem = (n_ck+1)*(n_cunk+1);
+	//int nb_elem = n_ck + n_cunk;
 	float * ptr_g = (float*) malloc (sizeof(float) * nb_elem);
 	
+	//Initialisation de la matrice
 	for(i=0;i<nb_elem;i++)
 	{
 		ptr_g[i] = 0;
 	}
-	for(i=1;i<n_ck;i++)
+	for(i=1;i<n_ck+1;i++)
 	{
-		ptr_g[i*n_ck]=FLOAT_MAX;
+		ptr_g[i*(n_ck+1)]=FLOAT_MAX;
 		
 	}
-	for(i=1;i<n_ck;i++)
+	for(i=1;i<n_ck+1;i++)
 	{
 		ptr_g[i]=FLOAT_MAX;
-		for(j=1;j<n_cunk;j++)
-		{
+		for(j=1;j<n_cunk+1;j++)
+		{ 
 			dist=distance_vect( c_k, c_unk ,i,j,dim_mfcc);
 			f1=ptr_g[(i-1)*n_ck+j]+d1*dist;
 			f2=ptr_g[(i-1)*n_ck+j-1]+d1*dist;
 			f3=ptr_g[(i)*n_ck+j-1]+d1*dist;
 			ptr_g[i*n_ck+j]=min(f1,f2,f3);
+		
+			
 		}
+			cout<< "\n ";
 	}
+	
+	for(i = 0; i< n_ck+1; i++){
+		
+		for(j = 0; j<n_cunk+1 ; j++){
+			cout<< ptr_g[i*5+j]<<" ";
+		}
+		cout<< "\n ";
+	}
+	
 	//D=ptr_g[i*n_ck+n_cunk]/(n_ck+n_cunk);
 	D=ptr_g[nb_elem-1]/(n_ck+n_cunk);
 	/*for(i=0;i<n_ck;i++)
@@ -165,7 +179,7 @@ int n_ck=4;
  float f2=1.0;
  float f3=1.0;
   	float sequence1[4] = {2, 1, 4, 5}; 
-	float sequence2[4] = {2, 1, 4, 5}; 
+	float sequence2[4] = {2, 1, 2, 5}; 
 f1= dtw( 4,4,dim_mfcc,  sequence1,sequence2);
  printf("\n d= %f \n",f1);
 
