@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -19,15 +20,14 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.File;
+import java.util.Random;
 
 import ups.projetmcs.R;
 
-/**
- * Created by utilisateur on 16/03/2016.
- */
-
 public class AccueilActivity extends Activity {
 
+    private final String[] randomSentence = {"Bienvenue !", "Aïe !", "Je t'écoute", "A tes ordres", "Hihihi !", "Ca chatouille !", "Ca roule !", "Tu m'aimes ?", "Sandrine ?", "Je suis Jumpy !"};
+    private final int[] randomSounds = {R.raw.sound1, R.raw.sound2, R.raw.sound3, R.raw.sound4, R.raw.sound5, R.raw.sound6,R.raw.sound7, R.raw.sound8, R.raw.sound9, R.raw.sound10 };
     Button btnValide;
     public static final String CORPUS_BRUITE = Environment.getExternalStorageDirectory()+"/corpus/dronevolant_bruite";
     public static final String CORPUS_NON_BRUITE = Environment.getExternalStorageDirectory()+"/corpus/dronevolant_nonbruite";
@@ -145,7 +145,11 @@ public class AccueilActivity extends Activity {
             mPlayerJumpyBienvenue.release();
         }
         isPlayingSound = true;
-        mPlayerJumpyBienvenue = MediaPlayer.create(AccueilActivity.this, R.raw.r2d2_bienvenue);
+        Random random = new Random();
+        int number = random.nextInt(10);
+        ImageView image = (ImageView) findViewById(R.id.imageView);
+        image.setImageDrawable(createMarkerIcon(getResources().getDrawable(R.drawable.bulle1), randomSentence[number], 120, 120));
+        mPlayerJumpyBienvenue = MediaPlayer.create(AccueilActivity.this, randomSounds[number]);
         mPlayerJumpyBienvenue.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
