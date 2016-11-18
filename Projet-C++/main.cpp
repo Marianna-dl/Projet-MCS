@@ -24,7 +24,7 @@ void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc){
 	
 	int16_t * xFiltered=(int16_t*)malloc(sizeof(int16_t));
 	int  newLength;
-	float threshold = 0.1;
+	float threshold = 0;
 
 
 	wavRead ( p_wav, chemin, p_header ) ;//-----------------------ok compile
@@ -50,9 +50,8 @@ void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc){
 	std::cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
 	std::cout.precision(5);
 
-	free(p_wav);
-	free(p_header);
-	free(xFiltered);
+	/*free(p_header);
+	free(xFiltered);*/
 }
 
  int main ()
@@ -60,22 +59,25 @@ void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc){
 	float D;
 	
 	char * chemin = "corpus/dronevolant_nonbruite/M01_arretetoi.wav";
+	//char * chemin = "corpus/dronevolant_nonbruite/M02_faisunflip.wav";
 	float *X_mfcc1=(float*)malloc(sizeof(float));
 	int length_xmfcc1;
 	parametrisation(chemin,&X_mfcc1,&length_xmfcc1);
 	
 	
-	chemin = "corpus/dronevolant_nonbruite/M01_arretetoi.wav";
+	chemin = "corpus/dronevolant_nonbruite/M01_faisunflip.wav";
 	float *X_mfcc2=(float*)malloc(sizeof(float));
 	int length_xmfcc2;
 	parametrisation(chemin,&X_mfcc2,&length_xmfcc2);
 
+	cout<<"length "<<length_xmfcc1<<endl;
+	cout<<"length "<<length_xmfcc2<<endl;
 	
-	D = dtw(length_xmfcc1, length_xmfcc2, 13, X_mfcc1, X_mfcc2);
+	D = dtw(length_xmfcc1, length_xmfcc2, 13, X_mfcc1, X_mfcc2 );
 
 	cout <<"\n  d =  "<< D <<"  .\n" ;  
-	free(X_mfcc1);
-	free(X_mfcc2);
+	/*free(X_mfcc1);
+	free(X_mfcc2);*/
   return 0;
   
 } 
