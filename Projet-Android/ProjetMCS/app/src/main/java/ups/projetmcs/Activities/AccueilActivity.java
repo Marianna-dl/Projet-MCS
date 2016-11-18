@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -30,7 +31,8 @@ public class AccueilActivity extends Activity {
     Button btnValide;
     public static final String CORPUS_BRUITE = Environment.getExternalStorageDirectory()+"/corpus/dronevolant_bruite";
     public static final String CORPUS_NON_BRUITE = Environment.getExternalStorageDirectory()+"/corpus/dronevolant_nonbruite";
-
+    private MediaPlayer mPlayerJumpyBienvenue;
+    private boolean isPlayingSound = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,7 @@ public class AccueilActivity extends Activity {
 
             @Override
             public void onClick(View v) {
+                stopJumpyBienvenue();
                 RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
                 int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
                 if (checkedRadioButtonId == R.id.radioAvance) {
@@ -97,6 +100,18 @@ public class AccueilActivity extends Activity {
               }
             }
         });
+
+        ImageView jumpingSumoImage = (ImageView) findViewById(R.id.imageJumpingSumo);
+        jumpingSumoImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isPlayingSound) {
+                    playJumpyBienvenue();
+                } else {
+                    stopJumpyBienvenue();
+                }
+            }
+        });
     }
 
     private Drawable createMarkerIcon(Drawable backgroundImage, String text,
@@ -122,6 +137,36 @@ public class AccueilActivity extends Activity {
         LayerDrawable layerDrawable = new LayerDrawable(
                 new Drawable[]{backgroundImage, new BitmapDrawable(canvasBitmap)});
         return layerDrawable;
+    }
+
+    private void playJumpyBienvenue() {
+        if(mPlayerJumpyBienvenue != null) {
+            mPlayerJumpyBienvenue.stop();
+            mPlayerJumpyBienvenue.release();
+        }
+        isPlayingSound = true;
+        mPlayerJumpyBienvenue = MediaPlayer.create(AccueilActivity.this, R.raw.r2d2_bienvenue);
+        mPlayerJumpyBienvenue.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                isPlayingSound = false;
+            }
+        });
+        mPlayerJumpyBienvenue.start();
+    }
+
+    private void stopJumpyBienvenue() {
+        if (mPlayerJumpyBienvenue != null) {
+            mPlayerJumpyBienvenue.release();
+            mPlayerJumpyBienvenue = null;
+            isPlayingSound = false;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopJumpyBienvenue();
     }
 }
 
