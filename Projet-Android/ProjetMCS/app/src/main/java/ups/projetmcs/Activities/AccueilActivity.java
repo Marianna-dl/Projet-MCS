@@ -168,8 +168,8 @@ public class AccueilActivity extends Activity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause() {
+        super.onPause();
         stopJumpyBienvenue();
     }
 }

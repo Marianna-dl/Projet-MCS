@@ -88,11 +88,6 @@ public class EtatUrgenceActivity extends Activity {
     public void onBackPressed() {
         super.onBackPressed();
         stopBeeDoSound();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
         if (mRecordButton.getmRecorder() != null) {
             mRecordButton.getmRecorder().release();
             mRecordButton.setmRecorder(null);
@@ -104,6 +99,12 @@ public class EtatUrgenceActivity extends Activity {
         }
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.onBackPressed();
+    }
+    
     public void setPoliceTitles(){
 
         TextView tv =(TextView) findViewById(R.id.textViewChoix);

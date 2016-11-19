@@ -70,8 +70,8 @@ public class DroiteActivity extends Activity {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onBackPressed() {
+        super.onBackPressed();
         if (mRecordButton.getmRecorder() != null) {
             mRecordButton.getmRecorder().release();
             mRecordButton.setmRecorder(null);
@@ -81,6 +81,12 @@ public class DroiteActivity extends Activity {
             mPlayButton.getmPlayer().release();
             mPlayButton.setmPlayer(null);
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.onBackPressed();
     }
 
     public void setPoliceTitles(){

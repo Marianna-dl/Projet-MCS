@@ -16,10 +16,12 @@ public class JumpysEars extends Activity {
     private Intent intent;
     private long wait = 2500L;
     private MediaPlayer mPlayerJumpy;
+    private boolean stop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        stop = false;
         setContentView(R.layout.jumpys_ears);
         TextView tv =(TextView) findViewById(R.id.textJumpysEars);
         Typeface typeFace = Typeface.createFromAsset(getAssets(),"fonts/Classic_Robot.otf");
@@ -43,7 +45,7 @@ public class JumpysEars extends Activity {
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-            if (intent == null) {
+            if (intent == null && !stop) {
                 intent = new Intent(JumpysEars.this, AccueilActivity.class);
                 startActivity(intent);
                 stopJumpy();
@@ -70,8 +72,16 @@ public class JumpysEars extends Activity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onBackPressed() {
+        super.onBackPressed();
         stopJumpy();
+        stop = true;
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.onBackPressed();
+    }
+
 }
