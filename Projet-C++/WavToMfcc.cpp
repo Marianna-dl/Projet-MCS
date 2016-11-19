@@ -194,6 +194,7 @@ void computeMFCC(float **X_mfcc, int *length_xmfcc, int16_t *x, int Nx, int freq
 	//FFTReal::flt_t * const fX_abs = new FFTReal::flt_t[nb_fft_kept];
 	*X_mfcc = new float[dim_mfcc*(n_frames + 1)];
 	*length_xmfcc = n_frames + 1;
+	//*length_xmfcc = (n_frames + 1)*dim_mfcc;
 	float	img;
 	int k, i, m;
 	float xnorm = 0;// Norm of the signal

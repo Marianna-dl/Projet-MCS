@@ -24,16 +24,14 @@ void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc){
 	
 	int16_t * xFiltered=(int16_t*)malloc(sizeof(int16_t));
 	int  newLength;
-	float threshold = 0;
+	float threshold = 0.0;
 
 
-	wavRead ( p_wav, chemin, p_header ) ;//-----------------------ok compile
+	wavRead ( p_wav, chemin, p_header ) ;
 
 	int16_t* result = new int16_t[p_header->totallength];
 	int x = 0;
 	int cpt = 0;
-	std::cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
-	std::cout.precision(5);
 	
    while(fread(&buffer,sizeof(buffer),1,*p_wav)>0){
 	result[x] = buffer;
@@ -41,14 +39,14 @@ void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc){
 	x++;
    }	
    
+   cout<<"file "<<cpt<<endl;
+   
    fclose(*p_wav);
 	
    removeSilence(result, cpt, &xFiltered, &newLength, threshold);
-   computeMFCC(X_mfcc, length_xmfcc, xFiltered, newLength ,p_header->frequency, 512, 256, 13, 26);
-   
-   
-	std::cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
-	std::cout.precision(5);
+   computeMFCC(X_mfcc, length_xmfcc, xFiltered, newLength ,p_header->frequency, 512, 256, 13, 20);
+	
+  
 
 	/*free(p_header);
 	free(xFiltered);*/
@@ -56,22 +54,35 @@ void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc){
 
  int main ()
 {
-	float D;
+	
+	float D = 0;
 	
 	char * chemin = "corpus/dronevolant_nonbruite/M01_arretetoi.wav";
-	//char * chemin = "corpus/dronevolant_nonbruite/M02_faisunflip.wav";
 	float *X_mfcc1=(float*)malloc(sizeof(float));
 	int length_xmfcc1;
 	parametrisation(chemin,&X_mfcc1,&length_xmfcc1);
 	
 	
-	chemin = "corpus/dronevolant_nonbruite/M01_faisunflip.wav";
+	chemin = "corpus/dronevolant_nonbruite/F01_arretetoi.wav";
+	// chemin = "corpus/dronevolant_nonbruite/M02_faisunflip.wav";
 	float *X_mfcc2=(float*)malloc(sizeof(float));
 	int length_xmfcc2;
 	parametrisation(chemin,&X_mfcc2,&length_xmfcc2);
 
 	cout<<"length "<<length_xmfcc1<<endl;
 	cout<<"length "<<length_xmfcc2<<endl;
+	
+	/*cout<<endl;
+	cout<<"{";
+	for(int i = 0; i <length_xmfcc1; i++){
+		cout<<X_mfcc1[i]<<",";
+	}
+	
+	cout<<endl;
+	cout<<"{";
+	for(int i = 0; i <length_xmfcc2; i++){
+		cout<<X_mfcc2[i]<<",";
+	}*/
 	
 	D = dtw(length_xmfcc1, length_xmfcc2, 13, X_mfcc1, X_mfcc2 );
 

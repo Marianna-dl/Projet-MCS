@@ -37,7 +37,8 @@ float distance_vect(float* sequence1,float* sequence2,int indicei,int indicej)
 {  
 	
 	float d =  sequence1[indicei]-sequence2[indicej]; 
-	
+	/*std::cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
+	std::cout.precision(4);*/
 	return fabs(d);
     
 }
@@ -77,13 +78,11 @@ float dtw(int n_ck, int n_cunk, int dim_mfcc, float* c_k, float* c_unk) {
 	
 	for(i=1;i<n_cunk+1;i++)
 	{
-		//ptr_g[i]=FLOAT_MAX;
 		ptr_g[i] = myinf;
 	}
 	
 
 	for(i=1;i<n_ck+1;i++){
-		//ptr_g[i*(n_cunk+1)]=FLOAT_MAX;
 		ptr_g[i*(n_cunk+1)] = myinf;
 	}
 	
@@ -103,8 +102,8 @@ float dtw(int n_ck, int n_cunk, int dim_mfcc, float* c_k, float* c_unk) {
 		}
 
 	}
-	
-	/*for(i=0;i<nb_elem;i++){
+	/*
+	for(i=0;i<nb_elem;i++){
 		
 		cpt++;
 		cout<<ptr_g[i]<<" ";
@@ -117,8 +116,8 @@ float dtw(int n_ck, int n_cunk, int dim_mfcc, float* c_k, float* c_unk) {
 
 	cout<<endl;
 
-	std::cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
-	std::cout.precision(5);
+	/*std::cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
+	std::cout.precision(4);*/
 	//cout<<ptr_g[nb_elem-1]<<endl;
 	//cout<<n_ck+1+n_cunk+1<<endl;
 	D = ptr_g[nb_elem-1]/(n_ck+1+n_cunk+1);
@@ -130,6 +129,8 @@ float dtw(int n_ck, int n_cunk, int dim_mfcc, float* c_k, float* c_unk) {
 /*
 int main ()
 {
+	
+	
 float test=1.1;
 int n_ck=4;
  int n_cunk=4;
@@ -139,19 +140,23 @@ int n_ck=4;
  float f1=1.0;
  float f2=1.0;
  float f3=1.0;
-	//diff
-  	float sequence1[14] = {-29.47844,4.56099,0.39657,-0.01331,0.04076,2.17803,-0.76123,-29.47844,4.56099,0.39657,-0.01331,0.04076,2.17803,-0.76123}; 
-	float sequence2[10] = {-29.47844,-4.56199,2.39657,-0.01331,2.17803, -8.47844,4.56099,0.39657,-0.01331,0.04076}; 
+	// m01 arrete toi
+  	float sequence1[20] = {-29.47844,4.56099,0.39657,-0.01331,0.04076,2.17803,-0.76123,-0.16993,1.01295,-1.13256,0.25960,-0.26968,0.52417,-30.08583,5.21871,2.47175,1.70361,0.60264,1.17376,-0.72708}; 
+	// m01 fais un flip
+	//float sequence2[20] = {-31.46570,5.98452,1.58243,0.83127,-0.01257,1.16902,-0.45578,0.85829,-0.73704,-1.47210,-0.72572,0.03230,1.32257,-31.06094,7.30821,1.83087,1.22177,1.04746,0.99569, 0.14940}; 
+	//float sequence2[10] = {-29.47844,-4.56199,2.39657,-0.01331,2.17803, -8.47844,4.56099,0.39657,-0.01331,0.04076}; 
 	
-	//semblable
-	float sequence3[14] = {-29.47844,4.56099,0.39657,-0.01331,0.04076,2.17803,-0.76123,-29.47844,4.56099,0.39657,-0.01331,0.04076,2.17803,-0.76123}; 
-	float sequence4[10] = {-29.47844,4.56099,0.39657,-0.01331,1.04076,2.17803,-1.76123,-29.47844,4.56099,0.39657};
-f1= dtw( 14,10,dim_mfcc,sequence1, sequence2);
+	// f01 arrete toi
+  	float sequence2[20] = {-36.80542,5.88896,1.57628,1.92571,0.85888,1.27760,-1.72685,0.27818,0.60532,0.36723,-1.44883,0.35761,-0.48190,-34.74994,6.50925,2.23733,1.57586,1.22149,0.14397,-0.45760}; 
+	
+	
+	
+f1= dtw( 20,20,dim_mfcc,sequence1, sequence2);
  printf("\n d= %f \n",f1);
- 
+ /*
  f2= dtw( 14,10,dim_mfcc,sequence3, sequence4);
- printf("\n d= %f \n",f2);
-
+ printf("\n d= %f \n",f2);*/
+/*
   return 0;
 }*/
 
