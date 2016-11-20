@@ -63,7 +63,7 @@ void parametrisation(char * chemin,float **X_mfcc, int *length_xmfcc){
 	parametrisation(chemin,&X_mfcc1,&length_xmfcc1);
 	
 	
-	chemin = "corpus/dronevolant_nonbruite/F01_arretetoi.wav";
+	chemin = "corpus/dronevolant_nonbruite/M02_faisunflip.wav";
 	// chemin = "corpus/dronevolant_nonbruite/M02_faisunflip.wav";
 	float *X_mfcc2=(float*)malloc(sizeof(float));
 	int length_xmfcc2;
