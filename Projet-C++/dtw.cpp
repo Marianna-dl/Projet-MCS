@@ -102,24 +102,7 @@ float dtw(int n_ck, int n_cunk, int dim_mfcc, float* c_k, float* c_unk) {
 		}
 
 	}
-	/*
-	for(i=0;i<nb_elem;i++){
-		
-		cpt++;
-		cout<<ptr_g[i]<<" ";
-		
-		if(cpt == n_cunk+1){
-			cout<<endl;
-			cpt = 0;
-		}
-	}*/
 
-	cout<<endl;
-
-	/*std::cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
-	std::cout.precision(4);*/
-	//cout<<ptr_g[nb_elem-1]<<endl;
-	//cout<<n_ck+1+n_cunk+1<<endl;
 	D = ptr_g[nb_elem-1]/(n_ck+1+n_cunk+1);
 	//free(ptr_g);
 	return D;

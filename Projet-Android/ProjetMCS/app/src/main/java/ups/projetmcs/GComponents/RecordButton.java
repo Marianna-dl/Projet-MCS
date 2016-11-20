@@ -100,6 +100,7 @@ public class RecordButton extends Button {
     }
 
     private void playBackgroundNoise() {
+
         if (mPlayerBackgroundNoise != null) {
             mPlayerBackgroundNoise.stop();
             mPlayerBackgroundNoise.release();
