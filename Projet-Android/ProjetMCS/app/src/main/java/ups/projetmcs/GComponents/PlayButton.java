@@ -31,6 +31,8 @@ public class PlayButton extends Button {
     final Context context;
     private static String corpusFolder;
     private String namefile;
+    private  MediaPlayer mPlayerBeeDoSound = null;
+    private RecordButton recordButton;
 
     public PlayButton(Context context) {
         super(context);
@@ -54,11 +56,9 @@ public class PlayButton extends Button {
         public void onClick(View v) {
             onPlay(mStartPlaying);
             if (mStartPlaying) {
-                setText("Arrêter l'écoute");
-                setBackgroundColor(Color.RED);
+                setBackgroundResource(R.drawable.stop);
             } else {
-                setText("Ecouter l'instruction");
-                setBackgroundColor(0xFFE9A11C);
+                setBackgroundResource(R.drawable.play);
             }
             mStartPlaying = !mStartPlaying;
         }
@@ -73,8 +73,18 @@ public class PlayButton extends Button {
     }
 
     private void startPlaying() {
+        disableRecordButton();
+        stopBeeDoSound();
         Log.v(LOG_TAG, corpusFolder);
         mPlayer = new MediaPlayer();
+        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                enablePlayButton();
+                enableRecordButton();
+                mStartPlaying = true;
+            }
+        });
         try {
             mPlayer.setDataSource(corpusFolder+"/"+namefile);
             mPlayer.prepare();
@@ -87,6 +97,29 @@ public class PlayButton extends Button {
     private void stopPlaying() {
         mPlayer.release();
         mPlayer = null;
+        enableRecordButton();
+    }
+
+    public void stopBeeDoSound() {
+        if (mPlayerBeeDoSound != null) {
+            mPlayerBeeDoSound.release();
+            mPlayerBeeDoSound = null;
+        }
+    }
+
+    private void disableRecordButton() {
+        recordButton.setBackgroundResource(R.drawable.record_disable);
+        recordButton.setEnabled(false);
+    }
+
+    private void enableRecordButton() {
+        recordButton.setBackgroundResource(R.drawable.record);
+        recordButton.setEnabled(true);
+    }
+
+    private void enablePlayButton() {
+        this.setBackgroundResource(R.drawable.play);
+        this.setEnabled(true);
     }
 
     public MediaPlayer getmPlayer() {
@@ -104,4 +137,8 @@ public class PlayButton extends Button {
     public void setNameFile(String nameFile){
         this.namefile = nameFile;
     }
+
+    public void setPlayBeeDoSound(MediaPlayer mPlayerBeeDooSound) { this.mPlayerBeeDoSound = mPlayerBeeDooSound;}
+
+    public void setRecordButton(RecordButton recordButton) { this.recordButton = recordButton;}
 }

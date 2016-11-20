@@ -28,10 +28,12 @@ public class ReculeActivity extends Activity {
         mRecordButton = (RecordButton) findViewById(R.id.btnRecord);
         mPlayButton = (PlayButton) findViewById(R.id.btnPlay);
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroupRecule);
-        mRecordButton.setCorpusFolder(AccueilActivity.CORPUS_BRUITE);
-        mPlayButton.setCorpusFolder(AccueilActivity.CORPUS_BRUITE);
+        mRecordButton.setCorpusFolder(AccueilActivity.CORPUS_NON_BRUITE);
+        mPlayButton.setCorpusFolder(AccueilActivity.CORPUS_NON_BRUITE);
         mRecordButton.setNameFile(NAME_FILE);
         mPlayButton.setNameFile(NAME_FILE);
+        mRecordButton.setPlayButton(mPlayButton);
+        mPlayButton.setRecordButton(mRecordButton);
 
         TextView tv =(TextView) findViewById(R.id.textViewChoix);
         Typeface typeFace = Typeface.createFromAsset(getAssets(),"fonts/Classic_Robot.otf");
@@ -64,16 +66,23 @@ public class ReculeActivity extends Activity {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onBackPressed() {
+        super.onBackPressed();
         if (mRecordButton.getmRecorder() != null) {
             mRecordButton.getmRecorder().release();
             mRecordButton.setmRecorder(null);
+            mRecordButton.stopBackgroundNoise();
         }
         if (mPlayButton.getmPlayer() != null) {
             mPlayButton.getmPlayer().release();
             mPlayButton.setmPlayer(null);
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.onBackPressed();
     }
 
     public void setPoliceTitles(){

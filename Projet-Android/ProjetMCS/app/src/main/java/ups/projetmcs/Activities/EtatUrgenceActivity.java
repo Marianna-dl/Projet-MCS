@@ -1,6 +1,7 @@
 package ups.projetmcs.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ import ups.projetmcs.R;
 
 public class EtatUrgenceActivity extends Activity {
 
-    private MediaPlayer mPlayer = null;
+    private MediaPlayer mPlayerBeeDoSound = null;
     private static final String LOG_TAG = "EtatUrgenceActivity";
     private static final String NAME_FILE = "etatdurgence.wav";
     RecordButton mRecordButton = null;
@@ -29,11 +30,15 @@ public class EtatUrgenceActivity extends Activity {
         setPoliceTitles();
         mRecordButton = (RecordButton) findViewById(R.id.btnRecord);
         mPlayButton = (PlayButton) findViewById(R.id.btnPlay);
-        playSound(R.raw.bee_do);
+        playBeeDoSound();
+        mRecordButton.setPlayBeeDoSound(mPlayerBeeDoSound);
+        mPlayButton.setPlayBeeDoSound(mPlayerBeeDoSound);
+        mRecordButton.setPlayButton(mPlayButton);
+        mPlayButton.setRecordButton(mRecordButton);
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroupEtatUrgence);
-        mRecordButton.setCorpusFolder(AccueilActivity.CORPUS_BRUITE);
-        mPlayButton.setCorpusFolder(AccueilActivity.CORPUS_BRUITE);
+        mRecordButton.setCorpusFolder(AccueilActivity.CORPUS_NON_BRUITE);
+        mPlayButton.setCorpusFolder(AccueilActivity.CORPUS_NON_BRUITE);
         mRecordButton.setNameFile(NAME_FILE);
         mPlayButton.setNameFile(NAME_FILE);
 
@@ -61,27 +66,32 @@ public class EtatUrgenceActivity extends Activity {
 
             }
         });
-
-
-
     }
 
-    private void playSound(int resId) {
-        if(mPlayer != null) {
-            mPlayer.stop();
-            mPlayer.release();
+    private void playBeeDoSound() {
+        if(mPlayerBeeDoSound != null) {
+            mPlayerBeeDoSound.stop();
+            mPlayerBeeDoSound.release();
         }
-        mPlayer = MediaPlayer.create(this, resId);
-        mPlayer.start();
+        mPlayerBeeDoSound = MediaPlayer.create(this, R.raw.bee_do);
+        mPlayerBeeDoSound.start();
     }
 
+    private void stopBeeDoSound() {
+        if (mPlayerBeeDoSound != null) {
+            mPlayerBeeDoSound.release();
+            mPlayerBeeDoSound = null;
+        }
+    }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onBackPressed() {
+        super.onBackPressed();
+        stopBeeDoSound();
         if (mRecordButton.getmRecorder() != null) {
             mRecordButton.getmRecorder().release();
             mRecordButton.setmRecorder(null);
+            mRecordButton.stopBackgroundNoise();
         }
         if (mPlayButton.getmPlayer() != null) {
             mPlayButton.getmPlayer().release();
@@ -89,6 +99,12 @@ public class EtatUrgenceActivity extends Activity {
         }
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.onBackPressed();
+    }
+    
     public void setPoliceTitles(){
 
         TextView tv =(TextView) findViewById(R.id.textViewChoix);

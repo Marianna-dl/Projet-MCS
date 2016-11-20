@@ -32,10 +32,12 @@ public class ArreteToiActivity extends Activity {
         mPlayButton = (PlayButton) findViewById(R.id.btnPlay);
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroupArreteToi);
 
-        mRecordButton.setCorpusFolder(AccueilActivity.CORPUS_BRUITE);
-        mPlayButton.setCorpusFolder(AccueilActivity.CORPUS_BRUITE);
+        mRecordButton.setCorpusFolder(AccueilActivity.CORPUS_NON_BRUITE);
+        mPlayButton.setCorpusFolder(AccueilActivity.CORPUS_NON_BRUITE);
         mRecordButton.setNameFile(NAME_FILE);
         mPlayButton.setNameFile(NAME_FILE);
+        mRecordButton.setPlayButton(mPlayButton);
+        mPlayButton.setRecordButton(mRecordButton);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -64,16 +66,23 @@ public class ArreteToiActivity extends Activity {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onBackPressed() {
+        super.onBackPressed();
         if (mRecordButton.getmRecorder() != null) {
             mRecordButton.getmRecorder().release();
             mRecordButton.setmRecorder(null);
+            mRecordButton.stopBackgroundNoise();
         }
         if (mPlayButton.getmPlayer() != null) {
             mPlayButton.getmPlayer().release();
             mPlayButton.setmPlayer(null);
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.onBackPressed();
     }
 
     public void setPoliceTitles(){
