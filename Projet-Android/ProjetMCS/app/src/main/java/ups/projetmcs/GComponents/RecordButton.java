@@ -21,7 +21,7 @@ import ups.projetmcs.R;
  */
 public class RecordButton extends Button {
     boolean mStartRecording = true;
-    private MediaRecorder mRecorder = null;
+    private WavAudioRecorder mRecorder = null;
     private static final String LOG_TAG = "RecordButton";
     private static String corpusFolder;
     private String namefile;
@@ -74,19 +74,21 @@ public class RecordButton extends Button {
             playBackgroundNoise();
         }
         Log.v(LOG_TAG, corpusFolder);
-        mRecorder = new MediaRecorder();
-        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        mRecorder.setOutputFile(corpusFolder+"/"+namefile);
-        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mRecorder = WavAudioRecorder.getInstanse();
+      //  mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mRecorder.setOutputFile(corpusFolder + "/" + namefile);
 
-        try {
+        if (WavAudioRecorder.State.INITIALIZING == mRecorder.getState()) {
             mRecorder.prepare();
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "prepare() failed");
+            mRecorder.start();
+        } else if (WavAudioRecorder.State.ERROR == mRecorder.getState()) {
+            mRecorder.release();
+            mRecorder = WavAudioRecorder.getInstanse();
+            mRecorder.setOutputFile(corpusFolder + "/" + namefile);
+        } else {
+            mRecorder.stop();
+            mRecorder.reset();
         }
-
-        mRecorder.start();
     }
 
     private void stopRecording() {
@@ -130,11 +132,11 @@ public class RecordButton extends Button {
         playButton.setEnabled(true);
     }
 
-    public MediaRecorder getmRecorder() {
+    public WavAudioRecorder getmRecorder() {
         return mRecorder;
     }
 
-    public void setmRecorder(MediaRecorder mRecorder) {
+    public void setmRecorder(WavAudioRecorder mRecorder) {
         this.mRecorder = mRecorder;
     }
 
